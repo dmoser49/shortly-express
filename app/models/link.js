@@ -13,11 +13,22 @@ var Link = db.Model.extend({
   },
   initialize: function(){
     this.on('creating', function(model, attrs, options){
+      console.log(this, " creation!")
       var shasum = crypto.createHash('sha1');
-      shasum.update(model.get('url'));
+      shasum.update(model.get('url')); // ???
       model.set('code', shasum.digest('hex').slice(0, 5));
     });
   }
 });
 
 module.exports = Link;
+
+shasum = function(stuff){/*
+  returns an object with a method called update
+  that returns hashed stuff
+*/}
+
+shasum.update = function(/*reference to something in db*/){
+  //returns hashed stuff
+}
+
